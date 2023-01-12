@@ -1,0 +1,34 @@
+.labyrinth {
+    display: grid;
+    grid-template-columns: repeat(5, 20vmin);
+    grid-template-rows: repeat(5, 20vmin);
+    gap: 2px;
+    position: relative;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #ddd;
+    position: relative;
+}
+
+/* CSS styles for the walls of each cell */
+.wall {
+    position: absolute;
+    height: 18vmin;
+    width: 2px;
+    background-color: #000;
+}
+
+/* CSS styles for the entrance and exit of the labyrinth */
+.entrance {
+    background-color: green;
+}
+
+.exit {
+    background-color: red;
+}
