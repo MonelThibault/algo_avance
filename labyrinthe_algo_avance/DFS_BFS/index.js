@@ -131,7 +131,7 @@ async function BFS(tab, start) {
     queue.push(start)
     // While the queue is not empty
     while (queue.length > 0) {
-        // Get the first cell in the queue
+        // Get the first cell in the queue in green
         let current = queue.shift()
         newTab.path.push(current);
         current.visited = true;
@@ -176,7 +176,7 @@ async function BFS(tab, start) {
     for (let i = 0; i < path.length; i++) {
         // Wait for 50ms
         await delay(50)
-        // Color the current cell in green
+        // Color the current cell in red
         displayCorrectPath(path[i])
     }
 }
@@ -213,17 +213,19 @@ async function DFS(tab, start) {
     let finish = tab[tab.length - 1]
     // Declare a variable 'queue' which is an empty array, and push the 'start' position to it.
     let queue = []
-    let newTab = tab;
-    newTab.path = [];
+    // The searchTab is here in order for us to show in browser all the explored option, where the path array used later, is for the correct path.
+    // Here we append an element to searchTab with the dot operator. We do the same with .visited or .prev later.
+    let searchTab = tab;
+    searchTab.path = [];
     queue.push(start)
 
     // A while loop is used here, which will continue until the 'queue' is empty.
     while (queue.length > 0) {
         // The first element of the queue is popped and assigned to a variable called 'current'.
         let current = queue.pop();
-        newTab.path.push(current);
+        searchTab.path.push(current);
         current.visited = true;
-        // Show the current exploration path
+        // Show the current exploration path in green
         await delay(20)
         await displaySearch(current);
         // Check if 'current' is the finish cell, if yes it break the loop.
@@ -263,10 +265,10 @@ async function DFS(tab, start) {
         // and for each cell, it calls the 'await delay(50)' function
         await delay(50)
         // with a delay of 50ms to pause the execution of the function
-        // before calling the 'display(path[i])' function to color it in green.
+        // before calling the 'display(path[i])' function to color it in red.
         displayCorrectPath(path[i])
     }
 }
 
 createLab();
-DFS(lab, positionXY)
+BFS(lab, positionXY)
